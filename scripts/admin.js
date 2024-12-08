@@ -54,5 +54,3 @@ function confirmLogout() {
     window.location.href = "index.html";
   }
 }
-
-

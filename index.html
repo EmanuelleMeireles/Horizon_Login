@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="css/style_index.css" />
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
     <title>Check-in/out</title>
-    <script src="scripts/checkin.js" defer></script>
+    <script src="scripts/index.js" defer></script>
   </head>
   <body>
     <div class="check-in-page">
       <div class="card">
         <div class="card-left">
-            <img class="logo" src="img/logo.png">
+          <img class="logo" src="img/logo.png" />
           <div class="footer-container">
             <p class="footer-text">
               Desenvolvido por Helius<br />
@@ -21,8 +21,7 @@
           </div>
         </div>
         <div class="card-right">
-          
-          <h1 class="title">Check-in/out</h1>
+          <h1 class="title" onclick="showPendingCheckouts()" style="cursor: pointer;">Check-in/out</h1>
           <div class="input-container">
             <input id="id-input" class="input" type="text" placeholder="Digite seu ID" />
           </div>
@@ -31,6 +30,23 @@
         </div>
       </div>
     </div>
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <h2>Funcionários com Check-out Pendente</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Setor</th>
+              <th>Entrada</th>
+            </tr>
+          </thead>
+          <tbody id="pending-checkouts-table">
+            <!-- Os dados serão inseridos dinamicamente aqui -->
+          </tbody>
+        </table>
+      </div>
+    </div>
   </body>
 </html>
- 

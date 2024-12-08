@@ -3,7 +3,8 @@ function toggleSidebar() {
     sidebar.classList.toggle('hidden');
   }
 
-  function generateEmployeeID() {
+  function generateEmployeeID(event) {
+    event.preventDefault();
     const letters = 'abcdefghijklmnopqrstuvwxyz';
     const id = `${letters[Math.floor(Math.random() * 26)]}${letters[Math.floor(Math.random() * 26)]}${Math.floor(
       100 + Math.random() * 900
@@ -20,15 +21,10 @@ function toggleSidebar() {
     document.querySelectorAll('.input').forEach(input => (input.value = ''));
   }
 
-  function navigateTo(page) {
-    const links = {
-      'admin-page': 'admin.html',             
-      'all-employees-page': 'todos.html',    
-      'employee-history-page': 'historico.html', 
-      'home-page': 'index.html',             
-    };
-
-    if (links[page]) {
-      window.location.href = links[page];
+  function confirmLogout() {
+    const userConfirmed = confirm("Tem certeza de que deseja retornar à página inicial?");
+    if (userConfirmed) {
+      window.location.href = "index.html";
     }
   }
+  

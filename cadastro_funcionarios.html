@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
- 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style_admin.css" />
+  <link rel="stylesheet" href="css/style_cadastro.css" />
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-  <title>Login do Administrador</title>
-  <script src="scripts/admin.js" defer></script>
+  <title>Cadastro de Funcionário</title>
+  <script src="scripts/cadastro.js" defer></script>
 </head>
 
-<body onload="showInfoPage()">
+<body>
   <div class="check-in-page">
     <div class="card">
       <div class="card-left">
-        <img class="logo" src="img/logo.png" alt="Logo" onclick="window.location.href='home.html'" />
+        <img class="logo" src="img/logo.png" alt="Logo" onclick="window.location.href='home.html'" style="cursor: pointer;" />
         <div class="menu">
           <button class="menu-item" onclick="window.location.href='cadastro_funcionarios.html'">Cadastro de funcionários</button>
           <button class="menu-item" onclick="window.location.href='funcionarios_ativos.html'">Funcionários Ativos Hoje</button>
@@ -29,27 +28,33 @@
           </p>
         </div>
       </div>
+
       <div class="card-right">
         <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
-        <div id="info-page">
-          <h1 class="title">Informações de login do administrador</h1>
-          <p id="current-user" class="info-text"></p>
-          <p id="current-password" class="info-text"></p>
-          <button id="Login" class="button" onclick="showUpdatePage()">Mudar login/senha</button>
-        </div>
-        <div id="update-page" class="hidden">
-          <h1 class="title">Atualizar informações de login</h1>
+        <form id="register-form" onsubmit="generateEmployeeID(event)">
+          <h1 class="title">Cadastro de Funcionário</h1>
+
           <div class="input-container">
-            <input id="new-user" class="input" type="text" placeholder="Novo usuário" />
+            <input class="input" type="text" placeholder="Nome" required />
           </div>
           <div class="input-container">
-            <input id="new-password" class="input" type="password" placeholder="Nova senha" />
+            <input class="input" type="text" placeholder="Setor" required />
           </div>
-          <button class="button" onclick="updateCredentials()">Confirmar</button>
+          <div class="input-container">
+            <input class="input" type="email" placeholder="E-mail" required />
+          </div>
+          <div class="input-container">
+            <input class="input" type="text" placeholder="Celular" required />
+          </div>
+
+          <button type="submit" class="button">Cadastrar</button>
+        </form>
+        <div id="confirmation" class="hidden">
+          <p id="generated-id" class="confirmation-text"></p>
+          <button class="button" onclick="resetForm()">Ok</button>
         </div>
       </div>
     </div>
   </div>
 </body>
-
 </html>

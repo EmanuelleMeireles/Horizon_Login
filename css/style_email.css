@@ -16,35 +16,35 @@
   padding: 0;
   box-sizing: border-box;
 }
-  
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--cor-fundo);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 20px;
 }
-  
+
 .check-in-page {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 16px;
 }
-  
+
 .card {
   display: flex;
   background-color: #fff;
   border-radius: 34px;
   box-shadow: 0px 4px 20px var(--cor-card-sombra);
-  max-width: 1550px;
-  width: 100%;
-  min-height: 650px; /*Alteração: 720px --> 650px*/
+  width: 90%;            /* Largura relativa */
+  max-width: 1200px;     /* Largura máxima */
+  min-height: 60vh;      /* Altura mínima relativa */
   overflow: hidden;
 }
-  
+
 .card-left {
   background-color: var(--cor-menu);
   flex: 1;
@@ -53,8 +53,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  border-radius: 34px; 
-  box-shadow: 15px 4px 46px var(--cor-menu-sombra); 
+  border-radius: 34px;
+  box-shadow: 15px 4px 46px var(--cor-menu-sombra);
 }
 
 .card-left img {
@@ -63,17 +63,17 @@ body {
   display: block;
   object-fit: contain;
 }
-  
+
 .footer-container {
   text-align: center;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
-  
+
 .footer-text {
   font-size: 14px;
   color: var(--cor-textos);
 }
-  
+
 .card-right {
   flex: 2;
   padding: 40px;
@@ -82,58 +82,45 @@ body {
   justify-content: center;
   align-items: center;
 }
-  
+
 .title {
   font-size: 28px;
-  color: #1e1e1e;
+  color: var(--cor-textos);
   margin-bottom: 20px;
   text-align: center;
 }
-  
+
 .input-container {
   width: 100%;
   max-width: 350px;
   margin-bottom: 15px;
   position: relative;
 }
-  
+
 .input {
   width: 100%;
   border: none;
   border-bottom: 2px solid var(--cor-input);
   outline: none;
   font-size: 16px;
-  text-align: center; 
+  text-align: center;
   padding: 10px 0;
   color: var(--cor-textos);
 }
-  
+
 .input::placeholder {
   color: #828282;
-  opacity: 1; 
+  opacity: 1;
 }
-  
+
 .input:focus::placeholder {
-  opacity: 0; 
+  opacity: 0;
 }
-  
+
 .input:focus {
-  border-bottom: 2px solid #3a5945;
+  border-bottom: 2px solid var(--cor-botao-pressionado);
 }
-  
-.admin-link {
-  font-size: 14px;
-  color: #51735a;
-  margin-bottom: 20px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-  
-.admin-link:hover {
-  color: #3a5945;
-}
-  
+
 .button {
   background-color: var(--cor-botao);
   color: #fff;
@@ -143,14 +130,56 @@ body {
   border-radius: 24px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+  margin-top: 15px;
 }
-   
+
 .button:hover {
   background-color: var(--cor-botao-pressionado);
   transform: scale(1.05);
 }
-  
+
 .button:active {
   transform: scale(0.95);
 }
-  
+
+.admin-link {
+  font-size: 14px;
+  color: var(--cor-input);
+  margin-bottom: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.admin-link:hover {
+  color: var(--cor-botao-pressionado);
+}
+
+/* Media Queries para telas menores (tablets e celulares) */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    width: 100%;
+    min-height: auto;
+  }
+
+  .card-left {
+    border-radius: 34px 34px 0 0;
+    padding: 15px;
+  }
+
+  .card-right {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .button {
+    max-width: 100%;
+  }
+}

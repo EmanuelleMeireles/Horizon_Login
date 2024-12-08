@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style_historico.css" />
-    <title>Histórico de Entradas e Saídas</title>
-    <script src="scripts/historico.js" defer></script>
+    <link rel="stylesheet" href="css/style_ativos.css" />
+    <title>Funcionários Ativos Hoje</title>
+    <script src="scripts/ativos.js" defer></script>
   </head>
   <body>
     <div class="check-in-page">
@@ -28,13 +28,12 @@
         </div>
         <div class="card-right">
           <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
-          <h1 class="title">Histórico de Entradas e Saídas</h1>
+          <h1 class="title">Funcionários Ativos Hoje</h1>
           <div class="input-container">
-            <input class="input" type="date" id="start-date" placeholder="Data Inicial" />
-            <input class="input" type="date" id="end-date" placeholder="Data Final" />
-            <button class="button" onclick="filterByDate()">🔍</button>
+            <input class="input" type="text" placeholder="Pesquisar por ID ou Nome" />
+            <button class="button">🔍</button>
           </div>
-          <table class="employees-history-table">
+          <table class="employees-table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -42,12 +41,10 @@
                 <th>Setor</th>
                 <th>E-mail</th>
                 <th>Celular</th>
-                <th>Data</th>
                 <th>Entrada</th>
-                <th>Saída</th>
               </tr>
             </thead>
-            <tbody id="history-table">
+            <tbody id="active-employees-table">
               <!-- Dados serão inseridos dinamicamente -->
             </tbody>
           </table>

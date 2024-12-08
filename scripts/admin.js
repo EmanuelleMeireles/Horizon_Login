@@ -41,23 +41,18 @@ function toggleSidebar() {
   sidebar.classList.toggle("hidden");
 }
 
-function navigateTo(page) {
-  const links = {
-    "register-page": "registro.html",
-    "all-employees-page": "todos.html",
-    "employee-history-page": "historico.html",
-    "home-page": "index.html",
-  };
-
-  if (links[page]) {
-    window.location.href = links[page];
-  }
-}
-
 window.onload = () => {
   if (!localStorage.getItem("adminUser") || !localStorage.getItem("adminPassword")) {
     saveCredentials(); 
   }
   showInfoPage(); 
 };
+
+function confirmLogout() {
+  const userConfirmed = confirm("Tem certeza de que deseja retornar à página inicial?");
+  if (userConfirmed) {
+    window.location.href = "index.html";
+  }
+}
+
 

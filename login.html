@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style_login.css" />
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <title>Login</title>
-    <script src="scripts/login.js" defer></script>
-  </head>
-  <body>
-    <div class="check-in-page">
-      <div class="card">
-        <div class="card-left">
-          <a href="index.html">
-            <img class="logo" src="img/logo.png" alt="Logo" style="cursor: pointer;" />
-          </a>
-          <div class="footer-container">
-            <p class="footer-text">
-              Desenvolvido por Helius<br />
-              2024 © Todos os direitos reservados
-            </p>
-          </div>
-        </div>
-        <div class="card-right">
-          <h1 class="title">Login</h1>
-          <div class="input-container">
-            <input id="username" class="input" type="text" placeholder="Usuário" />
-          </div>
-          <div class="input-container">
-            <input id="password" class="input" type="password" placeholder="Senha" />
-          </div>
-          <a href="#" class="admin-link">Esqueci minha senha</a>
-          <button class="button" onclick="validateLogin()">Entrar</button>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style_login.css" />
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+  <title>Login</title>
+  <script type="module" src="scripts/login.js"></script>
+</head>
+
+<body>
+  <div class="check-in-page">
+    <div class="card">
+      <div class="card-left">
+        <a href="index.html">
+          <img class="logo" src="img/logo.png" alt="Logo" />
+        </a>
+        <div class="footer-container">
+          <p class="footer-text">
+            Desenvolvido por Helius<br />
+            2024 © Todos os direitos reservados
+          </p>
         </div>
       </div>
+      <div class="card-right">
+        <h1 class="title">Login</h1>
+        <form id="signInForm">
+          <div class="input-container">
+            <input id="email" class="input" type="email" placeholder="Usuário" required />
+          </div>
+          <div class="input-container">
+            <input id="password" class="input" type="password" placeholder="Senha" required />
+          </div>
+          <div id="signInMessage" class="messageDiv" style="display: none;"></div>
+          <a href="#" class="admin-link">Esqueci minha senha</a>
+          <button type="submit" class="button" id="submitSignIn">Entrar</button>
+        </form>
+      </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

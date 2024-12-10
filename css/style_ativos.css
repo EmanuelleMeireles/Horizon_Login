@@ -182,28 +182,89 @@ img:hover {
   background-color: var(--cor-botao-pressionado);
 }
 
-.employees-table {
+table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
-  
-.employees-table th {
-  background-color: #a8d3b1;
-  padding: 10px;
-  text-align: left;
-}
-  
-.employees-table td {
-  padding: 10px;
+
+th, td {
   border: 1px solid #51735a;
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
 }
-  
-.employees-table td a {
-  color: #51735a;
-  text-decoration: none;
+
+th {
+  background-color: #a8d3b1;
+  color: #1e1e1e;
+  font-weight: bold;
 }
-  
-.employees-table td a:hover {
-  text-decoration: underline;
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e0f0e9;
+}
+
+.title {
+  font-size: 28px;
+  color: #1e1e1e;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.employees-table {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 900px;
+  background-color: #fff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Container da barra de pesquisa */
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Campo de entrada da pesquisa */
+.search-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid var(--cor-input);
+  border-radius: 24px 0 0 24px;
+  outline: none;
+}
+
+/* Botão de pesquisa */
+.search-button {
+  padding: 10px 20px;
+  background-color: var(--cor-botao);
+  color: #fff;
+  border: none;
+  border-radius: 0 24px 24px 0;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover para o botão de pesquisa */
+.search-button:hover {
+  background-color: var(--cor-botao-pressionado);
+  transform: scale(1.05);
+}
+
+/* Ícone de pesquisa no botão */
+.search-button::before {
+  content: '🔍';
+  margin-right: 5px;
 }

@@ -131,6 +131,7 @@ body {
   
 .admin-link:hover {
   color: #3a5945;
+  text-decoration: underline;
 }
   
 .button {

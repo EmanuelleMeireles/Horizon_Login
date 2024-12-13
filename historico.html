@@ -8,7 +8,9 @@
     <script type="module" src="scripts/historico.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script type="module" src="scripts/authGuard.js"></script>
   </head>
   <body>
     <div class="check-in-page">
@@ -38,31 +40,32 @@
           <div class="input-container">
             <input class="input" type="date" id="start-date" placeholder="Data Inicial" />
             <input class="input" type="date" id="end-date" placeholder="Data Final" />
-            <button class="button" onclick="filterByDate()">🔍</button>
-            <button class="button" onclick="exportToPDF()">Exportar para PDF</button>
+            <button class="button" onclick="filterByDate()"><img class="lupa" src="img/lupa_icone.png" alt="Ícone de Busca"></button>
+            <button id="pdf" class="button" onclick="exportToPDF()">PDF</button>
           </div>
           <!-- Nova barra de pesquisa por ID ou Nome -->
           <div class="input-container">
           <input class="input" type="text" id="search-input" placeholder="Buscar por ID ou Nome" oninput="filterByNameOrId()" />
-          <button class="button" onclick="filterByNameOrId()">🔍</button>
+          <button class="button" onclick="filterByNameOrId()"><img class="lupa" src="img/lupa_icone.png" alt="lupa de busca"></button>
+          </div class="employees-history-table">
+            <div class="tableCrop">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Setor</th>
+                    <th>Data</th>
+                    <th>Entrada</th>
+                    <th>Saída</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                  <tbody id="history-table">
+                  <!-- Dados serão inseridos dinamicamente -->
+                </tbody>
+              </table>
           </div>
-          <table class="employees-history-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Setor</th>
-                <th>Data</th>
-                <th>Entrada</th>
-                <th>Saída</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody id="history-table">
-              <!-- Dados serão inseridos dinamicamente -->
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
   </body>

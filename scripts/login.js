@@ -103,7 +103,6 @@ function validateLogin() {
 
   signInWithEmailAndPassword(auth, email, password)
     .then(() => {
-      alert('Login realizado com sucesso!');
       emailInput.value = '';    // Limpa o campo de e-mail
       passwordInput.value = ''; // Limpa o campo de senha
       window.location.href = 'home.html';

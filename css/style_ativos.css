@@ -173,9 +173,10 @@ img:hover {
   cursor: pointer;
 }
 
-/*Alterado: Tamanho da lupa*/
-#Lupa img {
-  max-width: 18px;
+.lupa{
+  max-width: 17px;
+  text-align: center;
+  margin-top: 4px;
 }
 
 .button:hover {
@@ -186,6 +187,12 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+}
+
+table tbody {
+  width: 100%;
+  height: 200px;
+  overflow: overlay;
 }
 
 th, td {
@@ -251,7 +258,7 @@ tr:hover {
   background-color: var(--cor-botao);
   color: #fff;
   border: none;
-  border-radius: 0 24px 24px 0;
+  border-radius: 24px;
   cursor: pointer;
   font-size: 18px;
   transition: background-color 0.3s, transform 0.2s;

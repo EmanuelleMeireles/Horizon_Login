@@ -33,8 +33,8 @@ async function loadEmployees() {
           <td>${data.email}</td>
           <td>${data.phone}</td>
           <td>
-            <button class="edit-button" onclick="editEmployee('${docSnap.id}')">✏️</button>
-            <button class="delete-button" onclick="deleteEmployee('${docSnap.id}')">🗑️</button>
+            <button class="edit-button" onclick="editEmployee('${docSnap.id}')"><img src="img/lapis_icone.png" alt="Ícone de Lápis" width="30" height="30"></button>
+            <button class="delete-button" onclick="deleteEmployee('${docSnap.id}')"><img src="img/lixeira_icone.png" alt="Ícone de Lixeira" width="30" height="30"></button>
           </td>
         </tr>
       `;

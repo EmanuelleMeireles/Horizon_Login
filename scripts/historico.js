@@ -12,6 +12,18 @@ const firebaseConfig = {
   appId: '1:31055563122:web:da0bb34a1c5076ab0675eb',
 };
 
+// Cria um elemento <img>
+const img = document.createElement('img');
+
+
+// Define o caminho da imagem
+img.src = 'img/lixeira_icone.png';
+
+// Define atributos opcionais
+img.alt = 'Icone de Lixeira'; // Texto alternativo
+img.width = 30; // Largura da imagem
+img.height = 30; // Altura da imagem
+
 // Inicializa o Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -112,7 +124,7 @@ function loadHistory() {
             <td>${data.checkOut || ''}</td>
             <td>
               <button class="delete-button" onclick="deleteCheckin('${docSnapshot.id}')">
-                🗑️
+                <img src="img/lixeira_icone.png" alt="Ícone de Lixeira" width="30" height="30">
               </button>
             </td>
           </tr>

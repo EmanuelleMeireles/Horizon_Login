@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="css/style_ativos.css" />
   <title>Funcionários Ativos</title>
   <script type="module" src="scripts/ativos.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script type="module" src="scripts/authGuard.js"></script>
 </head>
 <body>
   <div class="check-in-page">
@@ -34,7 +37,7 @@
             placeholder="Buscar por Nome ou ID..."
             onkeydown="if (event.key === 'Enter') searchEmployees()"
           />
-          <button class="button" onclick="searchEmployees()">🔍</button>
+          <button class="button" onclick="searchEmployees()"><img class="lupa" src="img/lupa_icone.png" alt="Ícone Lupa"></button>
         </div>
         <table class="employees-table">
           <thead>

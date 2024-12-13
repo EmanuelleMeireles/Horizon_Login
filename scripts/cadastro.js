@@ -89,3 +89,5 @@ function confirmLogout() {
   }
 }
 
+window.confirmLogout = confirmLogout;
+window.toggleSidebar = toggleSidebar;

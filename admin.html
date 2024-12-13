@@ -1,55 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
- 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/style_admin.css" />
-  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-  <title>Login do Administrador</title>
-  <script src="scripts/admin.js" defer></script>
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+  <title>Administração de Usuários</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script type="module" src="scripts/admin.js"></script>
 </head>
 
-<body onload="showInfoPage()">
+<body>
   <div class="check-in-page">
     <div class="card">
+      <!-- Barra lateral -->
       <div class="card-left">
         <img class="logo" src="img/logo.png" alt="Logo" onclick="window.location.href='home.html'" />
         <div class="menu">
           <button class="menu-item" onclick="window.location.href='cadastro_funcionarios.html'">Cadastro de funcionários</button>
           <button class="menu-item" onclick="window.location.href='funcionarios_ativos.html'">Funcionários Ativos Hoje</button>
-          <button class="menu-item" onclick="window.location.href='historico.html'">Histórico de Entradas e Saídas</button>
-          <button class="menu-item" onclick="window.location.href='admin.html'">Login do administrador</button>
+          <button class="menu-item" onclick="window.location.href='historico.html'">Histórico de Check-in/out</button>
+          <button class="menu-item" onclick="window.location.href='admin.html'">Gerenciar administradores</button>
         </div>
         <button class="menu-item logout" onclick="confirmLogout()">Sair</button>
         <div class="footer-container">
-          <p class="footer-text">
-            Desenvolvido por Helius<br />
-            2024 © Todos os direitos reservados
-          </p>
+          <p class="footer-text">Desenvolvido por Helius<br />2024 © Todos os direitos reservados</p>
         </div>
       </div>
+
+      <!-- Conteúdo principal -->
       <div class="card-right">
         <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
-        <div id="info-page">
-          <h1 class="title">Informações de login do administrador</h1>
-          <p id="current-user" class="info-text"></p>
-          <p id="current-password" class="info-text"></p>
-          <button id="Login" class="button" onclick="showUpdatePage()">Mudar login/senha</button>
-        </div>
-        <div id="update-page" class="hidden">
-          <h1 class="title">Atualizar informações de login</h1>
+        <h1 class="title">Gerenciar Usuários Administradores</h1>
+
+        <!-- Botões principais -->
+        <div id="button-container" class="nav-buttons">
+          <button class="button" onclick="showSection('register-section')">Cadastrar Novo Usuário</button>
+          <button class="button" onclick="showSection('reset-section')">Redefinir Senha de Usuário</button>
+          <button class="button" onclick="showSection('manage-section')">Administrar Usuários Existentes</button>
+        </div>        
+
+        <div id="register-section" class="section hidden">
+          <h2>Cadastrar Novo Usuário</h2>
           <div class="input-container">
-            <input id="new-user" class="input" type="text" placeholder="Novo usuário" />
+            <input id="new-email" class="input" type="email" placeholder="Email" />
           </div>
           <div class="input-container">
-            <input id="new-password" class="input" type="password" placeholder="Nova senha" />
+            <input id="new-password" class="input" type="password" placeholder="Senha" />
           </div>
-          <button class="button" onclick="updateCredentials()">Confirmar</button>
+          <button class="button" onclick="registerUser()">Cadastrar</button>
+          <button class="button" onclick="goBack()">Voltar</button>
         </div>
+        
+        <div id="reset-section" class="section hidden">
+          <h2>Redefinir Senha de Usuário</h2>
+          <div class="input-container">
+            <input id="reset-email" class="input" type="email" placeholder="Email do Usuário" />
+          </div>
+          <button class="button" onclick="resetPassword()">Redefinir Senha</button>
+          <button class="button" onclick="goBack()">Voltar</button>
+        </div>
+        
+        <div id="manage-section" class="section hidden">
+          <h2>Administrar Usuários</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body"></tbody>
+          </table>
+          <button class="button" onclick="goBack()">Voltar</button>
+        </div>        
       </div>
     </div>
   </div>
 </body>
-
 </html>

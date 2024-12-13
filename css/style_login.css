@@ -152,4 +152,15 @@ body {
 .button:active {
   transform: scale(0.95);
 }
+
+.hidden {
+  display: none;
+}
+
+#forgot-password-section {
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+}
+
   

@@ -214,3 +214,89 @@ img:hover {
   display: block;
   margin: 0 auto;
 }
+
+.hidden {
+  display: none;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.nav-buttons .button {
+  background-color: #51735a;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.nav-buttons .button:hover {
+  background-color: #3a5945;
+  transform: scale(1.05);
+}
+
+.section {
+  margin-top: 30px;
+}
+
+/* Ajustes para a Tabela no Modal */
+table {
+  width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 900px;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 14px;
+  background-color: #fff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid #51735a; /* Cor e espessura ajustadas */
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
+}
+
+th {
+  background-color: #a8d3b1;
+  color: #1e1e1e;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e0f0e9;
+}
+
+/* Bordas arredondadas para a tabela */
+th:first-child {
+  border-top-left-radius: 12px;
+}
+
+th:last-child {
+  border-top-right-radius: 12px;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+

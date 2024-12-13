@@ -268,3 +268,41 @@ tr:hover {
   content: '🔍';
   margin-right: 5px;
 }
+
+.delete-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #ff4d4f;
+  transition: color 0.3s;
+}
+
+.delete-button:hover {
+  color: #d9363e;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.edit-button,
+.delete-button,
+.save-button,
+.cancel-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.edit-button:hover,
+.delete-button:hover,
+.save-button:hover,
+.cancel-button:hover {
+  color: #51735a;
+}
+

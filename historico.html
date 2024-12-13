@@ -4,19 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style_historico.css" />
-    <title>Histórico de Entradas e Saídas</title>
-    <script src="scripts/historico.js" defer></script>
+    <title>Histórico de Check-in/Check-out</title>
+    <script type="module" src="scripts/historico.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
   </head>
   <body>
     <div class="check-in-page">
       <div class="card">
+        <!-- Menu lateral -->
         <div class="card-left">
           <img class="logo" src="img/logo.png" alt="Logo" onclick="window.location.href='home.html'" style="cursor: pointer;" />
           <div class="menu">
             <button class="menu-item" onclick="window.location.href='cadastro_funcionarios.html'">Cadastro de funcionários</button>
             <button class="menu-item" onclick="window.location.href='funcionarios_ativos.html'">Funcionários Ativos Hoje</button>
-            <button class="menu-item" onclick="window.location.href='historico.html'">Histórico de Entradas e Saídas</button>
-            <button class="menu-item" onclick="window.location.href='admin.html'">Login do administrador</button>
+            <button class="menu-item" onclick="window.location.href='historico.html'">Histórico de Check-in/out</button>
+            <button class="menu-item" onclick="window.location.href='admin.html'">Gerenciar administradores</button>
           </div>
           <button class="menu-item logout" onclick="confirmLogout()">Sair</button>
           <div class="footer-container">
@@ -26,13 +30,21 @@
             </p>
           </div>
         </div>
+
+        <!-- Conteúdo principal -->
         <div class="card-right">
           <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
-          <h1 class="title">Histórico de Entradas e Saídas</h1>
+          <h1 class="title">Histórico de Check-in/Check-out</h1>
           <div class="input-container">
             <input class="input" type="date" id="start-date" placeholder="Data Inicial" />
             <input class="input" type="date" id="end-date" placeholder="Data Final" />
             <button class="button" onclick="filterByDate()">🔍</button>
+            <button class="button" onclick="exportToPDF()">Exportar para PDF</button>
+          </div>
+          <!-- Nova barra de pesquisa por ID ou Nome -->
+          <div class="input-container">
+          <input class="input" type="text" id="search-input" placeholder="Buscar por ID ou Nome" oninput="filterByNameOrId()" />
+          <button class="button" onclick="filterByNameOrId()">🔍</button>
           </div>
           <table class="employees-history-table">
             <thead>
@@ -40,11 +52,10 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Setor</th>
-                <th>E-mail</th>
-                <th>Celular</th>
                 <th>Data</th>
                 <th>Entrada</th>
                 <th>Saída</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody id="history-table">
@@ -56,3 +67,4 @@
     </div>
   </body>
 </html>
+

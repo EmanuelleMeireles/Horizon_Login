@@ -16,7 +16,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-  
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--cor-fundo);
@@ -25,7 +25,7 @@ body {
   align-items: center;
   height: 100vh;
 }
-  
+
 .check-in-page {
   display: flex;
   justify-content: center;
@@ -33,7 +33,7 @@ body {
   width: 100%;
   padding: 16px;
 }
-  
+
 .card {
   display: flex;
   background-color: #fff;
@@ -41,11 +41,11 @@ body {
   box-shadow: 0px 4px 20px var(--cor-card-sombra);
   max-width: 1550px;
   width: 100%;
-  min-height: 650px; /*Alteração: 720px --> 650px*/
+  min-height: 650px;
   overflow: hidden;
   position: relative;
 }
-  
+
 .card-left {
   background-color: var(--cor-menu);
   flex: 0 0 300px;
@@ -58,7 +58,6 @@ body {
   box-shadow: 15px 4px 46px var(--cor-menu-sombra);
 }
 
-
 .card-left img {
   max-width: 100%;
   height: auto;
@@ -66,24 +65,23 @@ body {
   object-fit: contain;
 }
 
-/*Alteração: Função para aparecer mãozinha sobre logo da Horizon*/
 img:hover {
   cursor: pointer;
 }
-  
+
 .card-left.hidden {
   display: none;
   border-radius: 34px;
 }
-  
+
 .menu {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-top: 45px; /*Alteração: 65px -> 45px*/
+  margin-top: 45px;
 }
-  
+
 .menu-item {
   background-color: transparent;
   border: -3px;
@@ -98,37 +96,37 @@ img:hover {
   transition: background-color 0.3s, color 0.3s;
   width: 90%;
 }
-  
+
 .menu-item.logout {
   margin-top: 13px;
   margin-bottom: auto;
 }
-  
+
 .menu-item:hover {
-  border-color:  #51735a70; /*Alterado: Adicionado cor de borda*/
+  border-color: #51735a70;
   background-color: var(--cor-botao-pressionado);
   color: #fff;
 }
-  
+
 .footer-container {
   text-align: center;
   margin-top: 20px;
 }
-  
+
 .footer-text {
   font-size: 14px;
   color: var(--cor-textos);
 }
-  
+
 .card-right {
   flex: 1;
   padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
-  
+
 .toggle-sidebar {
   background-color: transparent;
   border: none;
@@ -139,14 +137,14 @@ img:hover {
   left: 20px;
   cursor: pointer;
 }
-  
+
 .title {
   font-size: 28px;
   color: var(--cor-textos);
   margin-bottom: 20px;
   text-align: center;
 }
-  
+
 .input-container {
   display: flex;
   margin-bottom: 20px;
@@ -154,7 +152,7 @@ img:hover {
   width: 100%;
   max-width: 400px;
 }
-  
+
 .input {
   flex: 1;
   border: none;
@@ -164,7 +162,7 @@ img:hover {
   padding: 10px 0;
   margin-right: 10px;
 }
-  
+
 .button {
   background-color: var(--cor-botao);
   color: white;
@@ -173,42 +171,93 @@ img:hover {
   border-radius: 5px;
   cursor: pointer;
 }
-  
-/*Alterado: Tamanho da lupa*/
-#Lupa img {
-  max-width: 18px;
-}
 
 .button:hover {
   background-color: var(--cor-botao-pressionado);
 }
-  
-.employees-history-table {
+
+/* Estilo da Tabela */
+table {
   width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 900px;
   border-collapse: collapse;
   margin-top: 20px;
+  border-radius: 14px;
+  background-color: #fff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
-  
-.employees-history-table th {
-  background-color: #a8d3b1;
-  padding: 10px;
+
+th, td {
+  border: 1px solid #51735a; /* Cor e espessura ajustadas */
+  padding: 12px;
   text-align: left;
   font-size: 16px;
+}
+
+th {
+  background-color: #a8d3b1;
   color: #1e1e1e;
+  font-weight: bold;
 }
-  
-.employees-history-table td {
-  padding: 10px;
-  border: 1px solid #51735a;
-  font-size: 14px;
-  color: #1e1e1e;
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
-  
-.employees-history-table td a {
-  color: #51735a;
-  text-decoration: none;
+
+tr:hover {
+  background-color: #e0f0e9;
 }
-  
-.employees-history-table td a:hover {
-  text-decoration: underline;
+
+/* Bordas arredondadas para a tabela */
+th:first-child {
+  border-top-left-radius: 12px;
+}
+
+th:last-child {
+  border-top-right-radius: 12px;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: #d9534f;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.delete-button:hover {
+  color: #c9302c;
+}
+
+.button {
+  background-color: var(--cor-botao);
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 15px;
+}
+
+.button:hover {
+  background-color: var(--cor-botao-pressionado);
+  transform: scale(1.05);
+}
+
+.button:active {
+  transform: scale(0.95);
 }

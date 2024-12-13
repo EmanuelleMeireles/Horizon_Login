@@ -39,9 +39,9 @@ body {
   background-color: #fff;
   border-radius: 34px;
   box-shadow: 0px 4px 20px var(--cor-card-sombra);
-  width: 90%;            /* Largura relativa */
-  max-width: 1200px;     /* Largura máxima */
-  min-height: 60vh;      /* Altura mínima relativa */
+  max-width: 1550px;
+  width: 100%;
+  min-height: 650px; /*Alteração: 720px --> 650px*/
   overflow: hidden;
 }
 
@@ -53,8 +53,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  border-radius: 34px;
-  box-shadow: 15px 4px 46px var(--cor-menu-sombra);
+  border-radius: 34px; 
+  box-shadow: 15px 4px 46px var(--cor-menu-sombra); 
 }
 
 .card-left img {
@@ -66,7 +66,7 @@ body {
 
 .footer-container {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 10px; 
 }
 
 .footer-text {

@@ -1,0 +1,36 @@
+/* Estilo da Tabela */
+.tableCrop{
+  width: 85%;
+  height: 350px;
+  padding:0;
+  margin: 30px 0 0 0;
+  overflow-y: scroll;
+  border-radius: 15px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.118);
+  outline: none;
+}
+
+table {
+  width:100%;
+  height: 100%;
+  
+
+  margin: 0 auto;
+ 
+  background-color: #fff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  border-style: none;
+}
+/*  especificaçoes da tabela de funcionários ativos
+table {   
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+
+  table tbody {
+  width: 100%;
+  height: 200px;
+  overflow: overlay;
+}
+} */
+

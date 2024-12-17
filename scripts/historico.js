@@ -85,6 +85,7 @@ async function syncCheckinWithEmployees() {
   }
 }
 
+let isAscending = true; // Variável para controlar a ordem
 
 // Função para carregar o histórico de check-ins/check-outs em tempo real
 function loadHistory() {
@@ -103,6 +104,13 @@ function loadHistory() {
         checkins.push({ id: docSnapshot.id, data: docSnapshot.data() });
       });
 
+      // Ordena os check-ins por data e hora com base no estado da variável isAscending
+      checkins.sort((a, b) => {
+        const dateTimeA = new Date(`${a.data.data} ${a.data.checkIn}`);
+        const dateTimeB = new Date(`${b.data.data} ${b.data.checkIn}`);
+        return isAscending ? dateTimeA - dateTimeB : dateTimeB - dateTimeA;
+      });
+
       // Chama a função de filtro com os check-ins carregados
       filterAndDisplayCheckins(checkins);
     });
@@ -110,6 +118,7 @@ function loadHistory() {
     console.error('Erro ao carregar histórico:', error);
   }
 }
+
 
 // Converte a data do formato YYYY-MM-DD para DD/MM/YYYY
 function formatDate(dateStr) {
@@ -139,11 +148,11 @@ function filterAndDisplayCheckins(checkins) {
     return matchesDate && matchesSearch;
   });
 
-  // Ordena os check-ins filtrados por data e hora (decrescente)
+  // Ordena os check-ins filtrados por data e hora (crescente ou decrescente)
   filteredCheckins.sort((a, b) => {
     const dateTimeA = new Date(`${a.data.data} ${a.data.checkIn}`);
     const dateTimeB = new Date(`${b.data.data} ${b.data.checkIn}`);
-    return dateTimeB - dateTimeA;
+    return isAscending ? dateTimeA - dateTimeB : dateTimeB - dateTimeA;
   });
 
   // Insere os check-ins filtrados na tabela
@@ -170,6 +179,10 @@ function filterAndDisplayCheckins(checkins) {
   });
 }
 
+function toggleOrder() {
+  isAscending = !isAscending; // Alterna a ordem
+  loadHistory(); // Recarrega a tabela com a nova ordem
+}
 
 // Event listeners para os inputs de filtro
 document.getElementById('start-date').addEventListener('change', loadHistory);
@@ -182,10 +195,6 @@ window.onload = async () => {
   await cleanupOrphanCheckins();    // Limpa os check-ins órfãos
   loadHistory();                    // Carrega o histórico
 };
-
-// Exporta a função para ser usada no HTML
-window.loadHistory = loadHistory;
-window.deleteCheckin = deleteCheckin;
 
 // Função para filtrar os dados pelo intervalo de datas
 function filterByDate() {
@@ -231,13 +240,6 @@ function filterByNameOrId() {
   });
 }
 
-// Exporta a função para ser usada no HTML
-window.filterByNameOrId = filterByNameOrId;
-
-// Exporta a função para ser usada no HTML
-window.filterByDate = filterByDate;
-window.loadHistory = loadHistory;
-
 function exportToPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -273,10 +275,6 @@ function exportToPDF() {
   doc.save("historico_checkin_checkout.pdf");
 }
 
-// Exporta a função para uso no HTML
-window.exportToPDF = exportToPDF;
-
-
 function toggleSidebar() {
   const sidebar = document.querySelector('.card-left');
   sidebar.classList.toggle('hidden');
@@ -289,5 +287,11 @@ function confirmLogout() {
   }
 }
 
+window.loadHistory = loadHistory;
+window.deleteCheckin = deleteCheckin;
+window.filterByNameOrId = filterByNameOrId;
+window.filterByDate = filterByDate;
+window.exportToPDF = exportToPDF;
 window.confirmLogout = confirmLogout;
 window.toggleSidebar = toggleSidebar;
+window.toggleOrder = toggleOrder;

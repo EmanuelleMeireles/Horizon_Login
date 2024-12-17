@@ -18,9 +18,16 @@ async function loadEmployees() {
           <td>${data.sector}</td>
           <td>${data.email}</td>
           <td>${data.phone}</td>
-          <td class="button-form">
-            <button class="edit-button" onclick="editEmployee('${docSnap.id}')"><img src="img/lapis_icone.png" alt="Ícone de Lápis" width="30" height="30"></button>
-            <button class="delete-button" onclick="deleteEmployee('${docSnap.id}')"><img src="img/lixeira_icone.png" alt="Ícone de Lixeira" width="30" height="30"></button>
+          <td class="password-cell" data-password="${data.password}">
+            <input type="password" value="${data.password}" disabled>
+          </td>
+          <td>
+            <button class="edit-button" onclick="editEmployee('${docSnap.id}')">
+              <img src="img/lapis_icone.png" alt="Ícone de Lápis" width="30" height="30">
+            </button>
+            <button class="delete-button" onclick="deleteEmployee('${docSnap.id}')">
+              <img src="img/lixeira_icone.png" alt="Ícone de Lixeira" width="30" height="30">
+            </button>
           </td>
         </tr>
       `;
@@ -63,16 +70,16 @@ function editEmployee(employeeId) {
   const row = document.querySelector(`tr[data-id="${employeeId}"]`);
   const cells = row.getElementsByTagName('td');
 
-  // Torna os campos editáveis (exceto o ID)
-  for (let i = 1; i < cells.length - 1; i++) {
-    const cell = cells[i];
-    const originalText = cell.textContent;
-    cell.innerHTML = `<input type="text" value="${originalText}" class="edit-input">`;
-  }
+  cells[1].innerHTML = `<input type="text" value="${cells[1].textContent}" id="edit-name-${employeeId}" class="edit-input">`;
+  cells[2].innerHTML = `<input type="text" value="${cells[2].textContent}" id="edit-sector-${employeeId}" class="edit-input">`;
+  cells[3].innerHTML = `<input type="email" value="${cells[3].textContent}" id="edit-email-${employeeId}" class="edit-input">`;
+  cells[4].innerHTML = `<input type="text" value="${cells[4].textContent}" id="edit-phone-${employeeId}" class="edit-input">`;
+  
+  // Exibe a senha real durante a edição
+  const passwordCell = cells[5];
+  passwordCell.innerHTML = `<input type="text" value="${passwordCell.getAttribute('data-password')}" id="edit-password-${employeeId}" class="edit-input">`;
 
-  // Muda o botão de lápis para um botão de salvar
-  const actionsCell = cells[cells.length - 1];
-  actionsCell.innerHTML = `
+  cells[6].innerHTML = `
     <button class="save-button" onclick="saveEmployee('${employeeId}')">💾</button>
     <button class="cancel-button" onclick="cancelEdit()">❌</button>
   `;
@@ -80,30 +87,34 @@ function editEmployee(employeeId) {
 
 // Função para salvar as alterações no banco de dados
 async function saveEmployee(employeeId) {
-  const row = document.querySelector(`tr[data-id="${employeeId}"]`);
-  const inputs = row.getElementsByClassName('edit-input');
+  const newName = document.getElementById(`edit-name-${employeeId}`).value.trim();
+  const newSector = document.getElementById(`edit-sector-${employeeId}`).value.trim();
+  const newEmail = document.getElementById(`edit-email-${employeeId}`).value.trim();
+  const newPhone = document.getElementById(`edit-phone-${employeeId}`).value.trim();
+  const newPassword = document.getElementById(`edit-password-${employeeId}`).value.trim();
 
-  const updatedData = {
-    name: inputs[0].value,
-    sector: inputs[1].value,
-    email: inputs[2].value,
-    phone: inputs[3].value,
-  };
+  if (!newName || !newSector || !newEmail || !newPhone || !newPassword) {
+    alert('Por favor, preencha todos os campos.');
+    return;
+  }
 
   try {
-    // Atualiza na coleção 'employees'
-    await updateDoc(doc(db, 'employees', employeeId), updatedData);
-
-    // Atualiza os registros correspondentes na coleção 'checkin'
-    await updateCheckinRecords(employeeId, updatedData);
+    await updateDoc(doc(db, 'employees', employeeId), {
+      name: newName,
+      sector: newSector,
+      email: newEmail,
+      phone: newPhone,
+      password: newPassword,
+    });
 
     alert('Funcionário atualizado com sucesso!');
-    loadEmployees(); // Recarrega a tabela para refletir as mudanças
+    loadEmployees();
   } catch (error) {
     console.error('Erro ao atualizar funcionário:', error);
-    alert('Erro ao atualizar funcionário.');
+    alert('Erro ao atualizar funcionário. Tente novamente.');
   }
 }
+
 
 // Função para cancelar a edição
 function cancelEdit() {
@@ -129,11 +140,6 @@ async function updateCheckinRecords(employeeId, updatedData) {
     console.error('Erro ao atualizar registros na coleção checkin:', error);
   }
 }
-
-window.deleteEmployee = deleteEmployee;
-window.editEmployee = editEmployee;
-window.saveEmployee = saveEmployee;
-window.cancelEdit = cancelEdit;
 
 // Função para buscar funcionários por Nome ou ID em tempo real
 function searchEmployees() {
@@ -168,7 +174,10 @@ function confirmLogout() {
 
 // Adicionar evento de busca em tempo real ao campo de pesquisa
 document.getElementById('search-input').addEventListener('input', searchEmployees);
-
+window.deleteEmployee = deleteEmployee;
+window.editEmployee = editEmployee;
+window.saveEmployee = saveEmployee;
+window.cancelEdit = cancelEdit;
 window.onload = loadEmployees;
 window.confirmLogout = confirmLogout;
 window.toggleSidebar = toggleSidebar;

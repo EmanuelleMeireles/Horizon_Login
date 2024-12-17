@@ -34,11 +34,14 @@ body {
    
 .button {
   background-color: var(--cor-botao);
-  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.125rem;
   border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: 1.5rem;
+  color: #fff;
+  background-color: #51735a;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .lupa{
@@ -51,7 +54,38 @@ body {
   background-color: var(--cor-botao-pressionado);
 }
 
+.hidden {
+  display: none;
+}
 
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.nav-buttons .button {
+  background-color: #51735a;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.nav-buttons .button:hover {
+  background-color: #3a5945;
+  transform: scale(1.05);
+}
+
+.section {
+  margin-top: 30px;
+}
 
 th, td {
   border: 1px solid #51735a;
@@ -196,4 +230,12 @@ tr:last-child td:first-child {
 
 tr:last-child td:last-child {
   border-bottom-right-radius: 0.75rem; /* 12px */
+}
+
+.password-cell input[type="password"] {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: inherit;
+  padding: 0;
 }

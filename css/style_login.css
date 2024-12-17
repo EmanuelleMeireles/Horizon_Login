@@ -1,24 +1,23 @@
 @charset "UTF-8";
 
-
 @import url("./default/default.css"); 
 @import url("./default/tabela.css");
- 
+
 .card-left {
   background-color: var(--cor-menu);
-  flex: 1px;
+  flex: 0.0625rem; /* 1px */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  border-radius: 34px; 
-  box-shadow: 15px 4px 46px var(--cor-menu-sombra); 
+  padding: 1.25rem; /* 20px */
+  border-radius: 2.125rem; /* 34px */
+  box-shadow: 0.9375rem 0.25rem 2.875rem var(--cor-menu-sombra); /* 15px 4px 46px */
 }
 
 .card-right {
   flex: 2;
-  padding: 40px;
+  padding: 2.5rem; /* 40px */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,54 +26,54 @@
 }
 
 .title {
-  font-size: 28px;
+  font-size: 1.75rem; /* 28px */
   color: var(--cor-textos);
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem; /* 20px */
   text-align: center;
 }
-  
+
 .input-container {
   width: 100%;
-  max-width: 350px;
-  margin-bottom: 15px;
+  max-width: 21.875rem; /* 350px */
+  margin-bottom: 0.9375rem; /* 15px */
   position: relative;
 }
-  
+
 .input {
-  width: 280px;
+  width: 17.5rem; /* 280px */
   max-width: 100%;
   border: none;
-  border-bottom: 2px solid var(--cor-input);
+  border-bottom: 0.125rem solid var(--cor-input); /* 2px */
   outline: none;
-  font-size: 16px;
-  padding: 10px 0;
+  font-size: 1rem; /* 16px */
+  padding: 0.625rem 0; /* 10px */
   color: var(--cor-textos);
 }
-  
+
 .input::placeholder {
   color: #828282;
   opacity: 1; 
 }
-  
+
 .input:focus::placeholder {
   opacity: 0; 
 }
-  
+
 .input:focus {
-  border-bottom: 2px solid #3a5945;
+  border-bottom: 0.125rem solid #3a5945; /* 2px */
 }
-  
+
 .admin-link {
   display: block;
-  font-size: 14px;
+  font-size: 0.875rem; /* 14px */
   color: #51735a;
-  margin-top: 25px;
-  margin-bottom: 15px;
+  margin-top: 1.5625rem; /* 25px */
+  margin-bottom: 0.9375rem; /* 15px */
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s;
 }
- 
+
 .admin-link:hover {
   color: #3a5945;
   text-decoration: underline;
@@ -83,20 +82,20 @@
 .button {
   background-color: var(--cor-botao);
   color: #fff;
-  font-size: 18px;
-  padding: 10px 20px;
+  font-size: 1.125rem; /* 18px */
+  padding: 0.625rem 1.25rem; /* 10px 20px */
   border: none;
-  border-radius: 24px;
+  border-radius: 1.5rem; /* 24px */
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  margin-top: 5px;
+  margin-top: 0.3125rem; /* 5px */
 }
-  
+
 .button:hover {
   background-color: var(--cor-botao-pressionado);
   transform: scale(1.05);
 }
-  
+
 .button:active {
   transform: scale(0.95);
 }
@@ -107,8 +106,9 @@
 
 #forgot-password-section {
   width: 100%;
-  max-width: 350px;
+  max-width: 21.875rem; /* 350px */
   text-align: center;
 }
+
 
   

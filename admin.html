@@ -30,58 +30,52 @@
         </div>
       </div>
 
+      <!-- Conteúdo principal -->
       <div class="card-right">
         <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
+        <h1 class="title">Gerenciar Usuários Administradores</h1>
 
-        <!-- Conteúdo Principal Centralizado -->
-        <div class="functions">
-          <div class="admin-content-1">
-            <div class="section-container">
-              <!-- Cadastro de Novo Usuário -->
-              <div id="register-section">
-                <h2 class="section-title">Cadastrar Novo Usuário</h2>
-                <div class="form-container">
-                  <input id="new-email" class="input" type="email" placeholder="Digite o Email" />
-                  <input id="new-password" class="input" type="password" placeholder="Digite a Senha" />
-                  <div class="especial"> 
-                    <button class="button" onclick="registerUser()">Cadastrar</button>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <!-- Redefinição de Senha -->
-              <div id="reset-section">
-                <h2 class="section-title">Redefinir Senha</h2>
-                <div class="form-container">
-                  <input id="reset-email" class="input" type="email" placeholder="Digite o Email para redefinição" />
-                  <div class="especial"> 
-                    <button class="button" onclick="resetPassword()">Redefinir Senha</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <!-- Botões principais -->
+        <div id="button-container" class="nav-buttons">
+          <button class="button" onclick="showSection('register-section')">Cadastrar Novo Usuário</button>
+          <button class="button" onclick="showSection('reset-section')">Redefinir Senha de Usuário</button>
+          <button class="button" onclick="showSection('manage-section')">Administrar Usuários Existentes</button>
+        </div>        
 
-          <div class="admin-content-2">
-            <div class="section-container">
-              <!-- Gerenciamento de Usuários -->
-              <div id="manage-section">
-                <h2 class="section-title">Gerenciar Administradores</h2>
-                <div class="table-container">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Email</th>
-                        <th>Ações</th>
-                      </tr>
-                    </thead>
-                    <tbody id="users-table-body"></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+        <div id="register-section" class="section hidden">
+          <h2>Cadastrar Novo Usuário</h2>
+          <div class="input-container">
+            <input id="new-email" class="input" type="email" placeholder="E-mail" />
           </div>
+          <div class="input-container">
+            <input id="new-password" class="input" type="password" placeholder="Senha" />
+          </div>
+          <button class="button" onclick="registerUser()">Cadastrar</button>
+          <button class="button" onclick="goBack()">Voltar</button>
         </div>
+        
+        <div id="reset-section" class="section hidden">
+          <h2>Redefinir Senha de Usuário</h2>
+          <div class="input-container">
+            <input id="reset-email" class="input" type="email" placeholder="E-mail do Usuário" />
+          </div>
+          <button class="button" onclick="resetPassword()">Redefinir Senha</button>
+          <button class="button" onclick="goBack()">Voltar</button>
+        </div>
+        
+        <div id="manage-section" class="section hidden">
+          <h2>Administrar Usuários</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>E-mail</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body"></tbody>
+          </table>
+          <button class="button" onclick="goBack()">Voltar</button>
+        </div>        
       </div>
     </div>
   </div>

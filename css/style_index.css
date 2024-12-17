@@ -1,24 +1,23 @@
 @charset "UTF-8";
 
-
 @import url("./default/default.css"); 
 @import url("./default/tabela.css");
 
 .card-left {
   background-color: var(--cor-menu);
-  flex: 1px;
+  flex: 0.0625rem; /* 1px */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  border-radius: 34px; 
-  box-shadow: 15px 4px 46px var(--cor-menu-sombra); 
+  padding: 1.25rem; /* 20px */
+  border-radius: 2.125rem; /* 34px */
+  box-shadow: 0.9375rem 0.25rem 2.875rem var(--cor-menu-sombra); /* 15px 4px 46px */
 }
 
 .card-right {
   flex: 2;
-  padding: 40px;
+  padding: 2.5rem; /* 40px */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,9 +26,9 @@
 }
 
 .title {
-  font-size: 32px;
+  font-size: 2rem; /* 32px */
   color: var(--cor-textos);
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem; /* 20px */
 }
 
 .title:hover {
@@ -38,19 +37,19 @@
 
 .input-container {
   width: 100%;
-  max-width: 650px;
-  margin-bottom: 20px;
+  max-width: 40.625rem; /* 650px */
+  margin-bottom: 1.25rem; /* 20px */
   text-align: center;
 }
 
 .input {
-  width: 320px;
+  width: 20rem; /* 320px */
   max-width: 100%;
   border: none;
-  border-bottom: 2px solid var(--cor-input);
+  border-bottom: 0.125rem solid var(--cor-input); /* 2px */
   outline: none;
-  font-size: 16px;
-  padding: 10px 0;
+  font-size: 1rem; /* 16px */
+  padding: 0.625rem 0; /* 10px */
   color: var(--cor-textos);
 }
 
@@ -64,14 +63,14 @@
 }
 
 .input:focus {
-  border-bottom: 2px solid #3a5945;
+  border-bottom: 0.125rem solid #3a5945; /* 2px */
 }
 
 .admin-link {
   display: block;
-  font-size: 14px;
+  font-size: 0.875rem; /* 14px */
   color: #51735a;
-  margin-bottom: 12px; 
+  margin-bottom: 0.75rem; /* 12px */
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s;
@@ -85,13 +84,13 @@
 .button {
   background-color: var(--cor-botao);
   color: #fff;
-  font-size: 18px;
-  padding: 10px 20px;
+  font-size: 1.125rem; /* 18px */
+  padding: 0.625rem 1.25rem; /* 10px 20px */
   border: none;
-  border-radius: 24px;
+  border-radius: 1.5rem; /* 24px */
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  margin-top: 7px;
+  margin-top: 0.4375rem; /* 7px */
 }
 
 .button:hover {
@@ -106,7 +105,6 @@
 .hidden {
   display: none;
 }
-
 
 /* Estilo do Modal */
 .modal {
@@ -124,21 +122,21 @@
 
 .modal-content {
   background: #fff;
-  padding: 40px;
-  border-radius: 12px;
-  width: 1000px;  /* Aumentado */
+  padding: 2.5rem; /* 40px */
+  border-radius: 0.75rem; /* 12px */
+  width: 62.5rem; /* 1000px */
   max-width: 90%;  /* Garantir responsividade */
   text-align: center;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0rem 0.25rem 1.25rem rgba(0, 0, 0, 0.1); /* 0px 4px 20px */
   position: relative;  /* Para posicionar o botão de fechar */
 }
 
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0.625rem; /* 10px */
+  right: 0.625rem; /* 10px */
   cursor: pointer;
-  font-size: 28px;
+  font-size: 1.75rem; /* 28px */
   background-color: transparent;
   border: none;
   color: #51735a;
@@ -152,22 +150,21 @@
 /* Ajustes para a Tabela no Modal */
 table {
   width: 100%;
-  width: 100%;
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 56.25rem; /* 900px */
   border-collapse: collapse;
-  margin-top: 20px;
-  border-radius: 14px;
+  margin-top: 1.25rem; /* 20px */
+  border-radius: 0.875rem; /* 14px */
   background-color: #fff;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0rem 0.25rem 1.25rem rgba(0, 0, 0, 0.1); /* 0px 4px 20px */
   overflow: hidden;
 }
 
 th, td {
-  border: 1px solid #51735a; /* Cor e espessura ajustadas */
-  padding: 12px;
+  border: 0.0625rem solid #51735a; /* 1px */
+  padding: 0.75rem; /* 12px */
   text-align: left;
-  font-size: 16px;
+  font-size: 1rem; /* 16px */
 }
 
 th {
@@ -186,21 +183,20 @@ tr:hover {
 
 /* Bordas arredondadas para a tabela */
 th:first-child {
-  border-top-left-radius: 12px;
+  border-top-left-radius: 0.75rem; /* 12px */
 }
 
 th:last-child {
-  border-top-right-radius: 12px;
+  border-top-right-radius: 0.75rem; /* 12px */
 }
 
 tr:last-child td:first-child {
-  border-bottom-left-radius: 12px;
+  border-bottom-left-radius: 0.75rem; /* 12px */
 }
 
 tr:last-child td:last-child {
-  border-bottom-right-radius: 12px;
+  border-bottom-right-radius: 0.75rem; /* 12px */
 }
-
 
 .hidden {
   display: none;

@@ -50,7 +50,6 @@ async function registerUser() {
     alert('Usuário cadastrado com sucesso!');
     emailInput.value = '';      
     passwordInput.value = '';   
-    loadUsers(); // Atualiza a tabela automaticamente
     goBack();
   } catch (error) {
     console.error('Erro ao cadastrar usuário:', error);
@@ -87,9 +86,7 @@ async function loadUsers() {
         <tr>
           <td>${userData.email}</td>
           <td>
-            <button class="delete-button" onclick="deleteUserAccount('${docSnapshot.id}')">
-              <img src="img/lixeira_icone.png" alt="Ícone de Lixeira" width="30" height="30">
-            </button>
+            <button class="delete-button" onclick="deleteUserAccount('${docSnapshot.id}')">🗑️</button>
           </td>
         </tr>
       `;
@@ -140,6 +137,8 @@ window.resetPassword = resetPassword;
 window.loadUsers = loadUsers;
 window.deleteUserAccount = deleteUserAccount;
 
+// Carrega os usuários automaticamente quando a seção "Administrar Usuários" é aberta
 document.addEventListener('DOMContentLoaded', () => {
-  loadUsers(); // Carrega os usuários automaticamente
+  const manageSectionButton = document.querySelector("button[onclick=\"showSection('manage-section')\"]");
+  manageSectionButton.addEventListener('click', loadUsers);
 });

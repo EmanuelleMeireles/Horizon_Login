@@ -2,6 +2,70 @@
 import { auth, db } from './firebaseConfig.js';
 import { collection, getDocs, onSnapshot, updateDoc, deleteDoc, doc, query, where } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
+async function generateAndSendPDF() {
+  try {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Título do PDF
+    doc.text('Histórico de Check-in/Check-out', 14, 15);
+
+    // Captura os dados da tabela atual
+    const table = document.getElementById('history-table');
+    if (!table || table.rows.length === 0) {
+      alert('A tabela está vazia.');
+      return;
+    }
+
+    const headers = ['ID', 'Nome', 'Setor', 'Data', 'Entrada', 'Saída'];
+    const tableRows = [];
+
+    for (let i = 0; i < table.rows.length; i++) {
+      const row = table.rows[i];
+      const rowData = [];
+      for (let j = 0; j < row.cells.length; j++) {
+        rowData.push(row.cells[j].textContent.trim());
+      }
+      tableRows.push(rowData);
+    }
+
+    // Adiciona os dados da tabela ao PDF
+    doc.autoTable({
+      head: [headers],
+      body: tableRows,
+      startY: 20,
+      theme: 'striped',
+    });
+
+    // Converte o PDF para Base64
+    const pdfBase64 = doc.output('datauristring').split(',')[1];
+
+    // Envia a requisição ao servidor
+    const response = await fetch('http://localhost:3000/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to: 'helius.empresa@gmail.com',
+        subject: 'Relatório Mensal de Check-in/Check-out',
+        text: 'Segue em anexo o relatório mensal de check-ins/check-outs.',
+        filename: 'historico_checkin_checkout.pdf',
+        pdfBase64: pdfBase64,
+      }),
+    });
+
+    const result = await response.text();
+    alert(result);
+  } catch (error) {
+    console.error('Erro ao enviar e-mail:', error);
+    alert('Erro ao enviar e-mail.');
+  }
+}
+
+// Torna a função disponível globalmente
+window.generateAndSendPDF = generateAndSendPDF;
+
 // Cria um elemento <img>
 const img = document.createElement('img');
 
@@ -98,11 +162,19 @@ function loadHistory() {
     onSnapshot(checkinRef, async (querySnapshot) => {
       tableBody.innerHTML = ''; // Limpa a tabela antes de inserir novos dados
 
+      // Verifica se há documentos na coleção
+      if (querySnapshot.empty) {
+        console.log('Nenhum check-in encontrado.');
+        return;
+      }
+
       // Converte os documentos em um array para facilitar a manipulação
       const checkins = [];
       querySnapshot.forEach((docSnapshot) => {
         checkins.push({ id: docSnapshot.id, data: docSnapshot.data() });
       });
+
+      console.log('Check-ins carregados:', checkins); // Log para debug
 
       // Ordena os check-ins por data e hora com base no estado da variável isAscending
       checkins.sort((a, b) => {
@@ -118,6 +190,7 @@ function loadHistory() {
     console.error('Erro ao carregar histórico:', error);
   }
 }
+
 
 
 // Converte a data do formato YYYY-MM-DD para DD/MM/YYYY
@@ -189,12 +262,16 @@ document.getElementById('start-date').addEventListener('change', loadHistory);
 document.getElementById('end-date').addEventListener('change', loadHistory);
 document.getElementById('search-input').addEventListener('input', loadHistory);
 
-// Carregar histórico e limpar check-ins órfãos ao carregar a página
 window.onload = async () => {
-  await syncCheckinWithEmployees(); // Sincroniza os nomes dos funcionários
-  await cleanupOrphanCheckins();    // Limpa os check-ins órfãos
-  loadHistory();                    // Carrega o histórico
+  try {
+    await syncCheckinWithEmployees(); // Sincroniza os nomes dos funcionários
+    await cleanupOrphanCheckins();    // Limpa os check-ins órfãos
+    loadHistory();                    // Carrega o histórico após a sincronização
+  } catch (error) {
+    console.error('Erro durante a inicialização:', error);
+  }
 };
+
 
 // Função para filtrar os dados pelo intervalo de datas
 function filterByDate() {

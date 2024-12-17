@@ -33,11 +33,11 @@ const transporter = nodemailer.createTransport({
 });
 
 // Função para gerar o PDF do histórico
-function generateMonthlyPDF(checkins) {
+function generatePDF(checkins, title = 'Histórico de Check-in/Check-out') {
   console.log('Gerando PDF com os check-ins:', checkins);
 
   const doc = new jsPDF();
-  doc.text('Histórico de Check-in/Check-out - Mês Anterior', 14, 15);
+  doc.text(title, 14, 15);
 
   const headers = ['ID', 'Nome', 'Setor', 'Data', 'Entrada', 'Saída'];
   const tableRows = checkins.map((checkin) => [
@@ -61,16 +61,43 @@ function generateMonthlyPDF(checkins) {
   return doc.output('datauristring').split(',')[1];
 }
 
+// Rota para enviar o e-mail manualmente com PDF em anexo
+app.post('/send-email', async (req, res) => {
+  try {
+    const { to, subject, text, pdfBase64 } = req.body;
+
+    const mailOptions = {
+      from: process.env.EMAIL_FROM,
+      to,
+      subject,
+      text,
+      attachments: [
+        {
+          filename: 'historico_checkin_checkout.pdf',
+          content: Buffer.from(pdfBase64, 'base64'),
+          contentType: 'application/pdf',
+        },
+      ],
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.status(200).send('E-mail enviado com sucesso!');
+  } catch (error) {
+    console.error('Erro ao enviar e-mail:', error);
+    res.status(500).send('Erro ao enviar e-mail.');
+  }
+});
+
 // Função para buscar os check-ins do mês anterior no Firestore
 async function fetchCheckinsForLastMonth() {
   const now = new Date();
   now.setDate(1); // Define o dia atual como 1º do mês
   now.setHours(0, 0, 0, 0);
-  
+
   // Primeiro dia do mês anterior
   const startOfLastMonth = new Date(now);
   startOfLastMonth.setMonth(startOfLastMonth.getMonth() - 1);
-  
+
   // Último dia do mês anterior
   const endOfLastMonth = new Date(startOfLastMonth.getFullYear(), startOfLastMonth.getMonth() + 1, 0);
 
@@ -96,19 +123,19 @@ async function fetchCheckinsForLastMonth() {
   }
 }
 
-// Função para enviar e-mail automático com PDF do mês anterior
-async function sendMonthlyEmail() {
+// Rota para enviar o e-mail automaticamente com o cron-job.org
+app.post('/send-monthly-email', async (req, res) => {
   try {
     console.log('Buscando check-ins do mês anterior...');
     const checkins = await fetchCheckinsForLastMonth();
 
     if (checkins.length === 0) {
       console.log('Nenhum check-in encontrado para o mês anterior.');
-      return;
+      return res.status(200).send('Nenhum check-in encontrado para o mês anterior.');
     }
 
     console.log('Gerando PDF...');
-    const pdfBase64 = generateMonthlyPDF(checkins);
+    const pdfBase64 = generatePDF(checkins, 'Histórico de Check-in/Check-out - Mês Anterior');
 
     console.log('Preparando e-mail...');
     const mailOptions = {
@@ -128,23 +155,14 @@ async function sendMonthlyEmail() {
     console.log('Enviando e-mail...');
     await transporter.sendMail(mailOptions);
     console.log('E-mail mensal enviado com sucesso!');
-  } catch (error) {
-    console.error('Erro ao enviar e-mail mensal:', error);
-  }
-}
-
-// Rota para enviar o e-mail manualmente ou via Cron-Job.org
-app.get('/send-monthly-email', async (req, res) => {
-  try {
-    await sendMonthlyEmail();
     res.status(200).send('E-mail mensal enviado com sucesso!');
   } catch (error) {
+    console.error('Erro ao enviar e-mail mensal:', error);
     res.status(500).send('Erro ao enviar e-mail mensal.');
   }
 });
 
+// Inicia o servidor
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
-
-

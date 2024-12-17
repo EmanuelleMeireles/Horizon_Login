@@ -28,7 +28,7 @@
           <div class="footer-container">
             <p class="footer-text">
               Desenvolvido por Helius<br />
-              2024 © Todos os direitos reservados
+              2024 © Direitos reservados à Horizon 
             </p>
           </div>
         </div>
@@ -41,7 +41,8 @@
             <input class="input" type="text" id="search-input" placeholder="Buscar por ID ou Nome" oninput="filterByNameOrId()" />
             <input class="input" type="date" id="start-date" placeholder="Data Inicial" />
             <input class="input" type="date" id="end-date" placeholder="Data Final" />
-            <button id="pdf" class="button" onclick="exportToPDF()"><img id="pdf_image" src="img/download_icon.png" alt=""></button>  
+            <button id="pdf" class="button" onclick="exportToPDF()"><img id="pdf_image" src="img/download_icon.png" alt=""></button>
+            <button id="send-pdf-button" class="button" onclick="generateAndSendPDF()">E-mail</button>
           </div>
           <div class="input-container">
           </div class="employees-history-table">
